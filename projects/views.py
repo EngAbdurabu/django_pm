@@ -2,12 +2,13 @@
 from django.views.generic import CreateView, ListView, UpdateView, DeleteView
 from django.urls import reverse_lazy, reverse
 from . import models, forms
+from django.contrib.auth.mixins import LoginRequiredMixin
 
 
 # =============================================================
 # ======================= Project Section ========================
 # =============================================================
-class ProjectListView(ListView):
+class ProjectListView(LoginRequiredMixin, ListView):
 	model = models.Project
 	template_name = "project/list.html"
 	paginate_by = 6
@@ -22,14 +23,14 @@ class ProjectListView(ListView):
 
 
 
-class ProjectCreateView(CreateView):
+class ProjectCreateView(LoginRequiredMixin, CreateView):
 	model = models.Project
 	form_class = forms.ProjectCreateForm
 	template_name = "project/create.html"
 	success_url = reverse_lazy("Project_List")
 
 
-class ProjectUpdateView(UpdateView):
+class ProjectUpdateView(LoginRequiredMixin, UpdateView):
 	model = models.Project
 	form_class = forms.ProjectUpdateForm
 	template_name = "project/update.html"
@@ -41,7 +42,7 @@ class ProjectUpdateView(UpdateView):
 # use return reveres("path_name", args = [project_id] )
 
 
-class ProjectDeleteView(DeleteView):
+class ProjectDeleteView(LoginRequiredMixin, DeleteView):
 	model = models.Project
 	template_name = "project/delete.html"
 	success_url = reverse_lazy("Project_List")
@@ -50,7 +51,7 @@ class ProjectDeleteView(DeleteView):
 # =============================================================
 # ======================= Task Section ========================
 # =============================================================
-class TaskCreateView(CreateView):
+class TaskCreateView(LoginRequiredMixin, CreateView):
 	model = models.Task
 	fields = ['project', 'description']
 	http_method_names = ['post']
@@ -59,7 +60,7 @@ class TaskCreateView(CreateView):
 		return reverse("Project_Update", args=[self.object.project.id])
 
 
-class TaskUpdateView(UpdateView):
+class TaskUpdateView(LoginRequiredMixin, UpdateView):
 	model = models.Task
 	fields = ['is_completed']
 	http_method_names = ['post']
@@ -68,7 +69,7 @@ class TaskUpdateView(UpdateView):
 		return reverse("Project_Update", args=[self.object.project.id])
 
 
-class TaskDeleteView(DeleteView):
+class TaskDeleteView(LoginRequiredMixin, DeleteView):
 	model = models.Task
 
 	def get_success_url(self):

@@ -13,7 +13,26 @@
         </li>
       </ul>
     </div>
-    <form method="GET" action="{% url 'Project_List' %}" class="d-flex">
+    {% if user.is_authenticated %}
+      <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+        <li class="nav-item dropdown">
+          <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+            {{ user.username }}
+          </a>
+          <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
+            <li><a class="dropdown-item" href="#">{% trans 'Profile'%}</a></li>
+            <li><hr class="dropdown-divider"></li>
+            <li>
+              <form method="post" action="{% url 'logout' %}">
+                {% csrf_token %}
+                <button type="submit" class="dropdown-item">{% trans 'Logout' %}</button>
+              </form>
+            </li>
+          </ul>
+        </li>
+      </ul>
+
+      <form method="GET" action="{% url 'Project_List' %}" class="d-flex">
         <div class="input-group">
           <input
             type="text"
@@ -27,7 +46,13 @@
           </button>
 
         </div>
-      </form>
+    </form>
+    {% else %}
+      <a class="btn btn-outline-light" href="{% url 'login' %}">
+        {% trans "Login" %}
+      </a>
+    {% endif %}
+
   </div>
 </nav>
 </header>
