@@ -11,9 +11,10 @@
 </ul>
 
 {% for field in form %}
-    <div class="mb-3">
-        <label class="form-label">{{ field.label }}</label>
-            {{ field }}
-    </div>
-
+    {% if exclude != field.name %}  <!-- تحقق إذا كان الحقل مستثنى لتجنب حقل password -->
+        <div class="mb-3">
+            <label class="form-label">{{ field.label }}</label>
+                {{ field }}
+        </div>
+    {% endif %}
 {% endfor %}

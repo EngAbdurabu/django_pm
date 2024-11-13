@@ -10,7 +10,16 @@
             <div class="card-body">
                 <form method="POST">
                     {% csrf_token %}
-                    {% include 'common/form.html' with form=form %}
+                    <!-- تضمين القالب بدون حقل كلمة المرور -->
+                    {% include "common/form.html" with form=form exclude="password" %}
+
+                    <!-- إضافة حقل كلمة المرور مع زر العين -->
+                    <div class="input-group mb-3">
+                        {{ form.password }}
+                        <button type="button" class="btn btn-outline-secondary" onclick="togglePassword()">
+                            <i id="toggleIcon" class="bi bi-eye"></i>
+                        </button>
+                    </div>
                     <div class="d-grid gap-2" >
                         <button class="btn btn-success btn-block">
                             {% translate 'Login' %}
@@ -22,5 +31,21 @@
         </div>
     </div>
 </div>
+<script>
+    function togglePassword() {
+        const passwordField = document.getElementById("id_password");  // تأكد من أن `id_password` هو معرف حقل كلمة المرور
+        const toggleIcon = document.getElementById("toggleIcon");
+
+        if (passwordField.type === "password") {
+            passwordField.type = "text";
+            toggleIcon.classList.remove("bi-eye");
+            toggleIcon.classList.add("bi-eye-slash");
+        } else {
+            passwordField.type = "password";
+            toggleIcon.classList.remove("bi-eye-slash");
+            toggleIcon.classList.add("bi-eye");
+        }
+    }
+</script>
 
 {% endblock %}
