@@ -1,5 +1,6 @@
 from django.db import models
 from django.conf.global_settings import AUTH_USER_MODEL
+from django.utils.translation import gettext as _
 
 
 # Create your models here.
@@ -11,10 +12,10 @@ class Category(models.Model):
 
 
 class ProjectStatus(models.IntegerChoices):
-	PENDING = 1, 'pending'
-	COMPLETED = 2, 'completed'
-	POSTPONED = 3, 'postponed'
-	CANCELED = 4, 'canceled'
+	PENDING = 1, _('pending')
+	COMPLETED = 2, _('completed')
+	POSTPONED = 3, _('postponed')
+	CANCELED = 4, _('canceled')
 
 
 class Project(models.Model):

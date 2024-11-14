@@ -14,6 +14,8 @@
                     {% include "common/form.html" with form=form exclude="password" %}
 
                     <!-- إضافة حقل كلمة المرور مع زر العين -->
+                    {% trans "Password"%}
+                    <br>
                     <div class="input-group mb-3">
                         {{ form.password }}
                         <button type="button" class="btn btn-outline-secondary" onclick="togglePassword()">
@@ -22,7 +24,7 @@
                     </div>
                     <div class="d-grid gap-2" >
                         <button class="btn btn-success btn-block">
-                            {% translate 'Login' %}
+                            {% trans 'Login' %}
                         </button>
                     </div>
 
