@@ -6,7 +6,7 @@ attrs = {"class": "form-control"}
 
 
 class ProjectCreateForm(forms.ModelForm):
-	new_category = forms.CharField(max_length=255, required=False)
+	# new_category = forms.CharField(max_length=255, required=False)
 
 	class Meta:
 		model = models.Project

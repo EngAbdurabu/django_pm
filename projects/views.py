@@ -30,10 +30,10 @@ class ProjectCreateView(LoginRequiredMixin, CreateView):
 
 	# connect each user with your project
 	def form_valid(self, form):
-		if form.cleaned_data['new_category']:
-			category = models.Category.objects.create(
-				name=form.cleaned_data['new_category'])
-			form.instance.category = category
+		# if form.cleaned_data['new_category']:
+		# 	category = models.Category.objects.create(
+		# 		name=form.cleaned_data['new_category'])
+		# 	form.instance.category = category
 		form.instance.user = self.request.user
 		return super().form_valid(form)
 
