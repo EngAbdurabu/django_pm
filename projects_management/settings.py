@@ -11,6 +11,8 @@ https://docs.djangoproject.com/en/5.1/ref/settings/
 """
 import os
 from pathlib import Path
+import dj_database_url
+
 
 import whitenoise.middleware
 from django.conf.global_settings import LOGIN_REDIRECT_URL, LOGOUT_REDIRECT_URL
@@ -29,8 +31,8 @@ SECRET_KEY = "django-insecure-_)1@1n%14^kriz)0@&vkz%878_lpx%9fs^0pxnrec+@9s-&d2p
 DEBUG = True
 
 ALLOWED_HOSTS = [
-    "*"
-]
+    "Render"
+    ]
 
 
 # Application definition
@@ -83,15 +85,11 @@ WSGI_APPLICATION = "projects_management.wsgi.application"
 # https://docs.djangoproject.com/en/5.1/ref/settings/#databases
 
 DATABASES = {
-    "default": {
-
-        "ENGINE": "django.db.backends.postgresql_psycopg2",
-        "NAME": "railway",
-        "USER": "postgres",
-        "PASSWORD": "lsvyXKMnDEYANufhcSZnGyyeWzORmjcx",
-        "HOST": "postgres.railway.internal",
-        "PORT": "5432"
-    }
+        'default': dj_database_url.config(
+        # Replace this value with your local database's connection string.
+        default='postgresql://projectmanagement_db_user:wugomBQB3drmKjE9iHmEsQn7PpMB2WO5@dpg-ct2qfpjv2p9s73b15gvg-a.oregon-postgres.render.com/projectmanagement_db',
+        conn_max_age=600
+    )
 }
 
 
