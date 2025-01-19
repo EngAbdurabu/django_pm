@@ -48,20 +48,18 @@ msgid "canceled"
 msgstr "ملغي "
 
 #: .\projects\models.py:43 .\projects\models.py:44
-#, fuzzy
-#| msgid "New Project"
+
 msgid "Project"
-msgstr "مشروع جديد"
+msgstr "مشروع "
 
 #: .\projects\models.py:56 .\projects\models.py:57
-#, fuzzy
-#| msgid "New Task"
+
 msgid "Task"
-msgstr "مهمة جديدة "
+msgstr "مهمة "
 
 #: .\projects\templates\partials\footer.html:5
 msgid "(c) 2024 Eng: Abdurabu. All rights reserved."
-msgstr "كل الحقوق محفظه .للمهندس عبدربه 2024"
+msgstr "كل الحقوق محفوظة .للمهندس عبدربه 2024"
 
 #: .\projects\templates\partials\header.html:5 .\projects_management\urls.py:22
 #: .\projects_management\urls.py:23
